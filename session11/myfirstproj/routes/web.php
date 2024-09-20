@@ -1,7 +1,8 @@
 <?php
 
 use App\Http\Controllers\HomeController;
-use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\TeacherController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,10 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get("/home", [HomeController::class, "index"]);
-
-Route::get("/store", [HomeController::class, "store"]);
-
-Route::get('/auth/login', function () {
-    return view('auth.login');
-});
+Route::get('/', [HomeController::class, 'index'])->name('index');
+Route::get('/students', [StudentController::class, 'index'])->name('students.index');
+Route::get('/teachers', [TeacherController::class, 'index'])->name('teachers.index');
+Route::get('/logout', fn () => 'comming soon')->name('logout');

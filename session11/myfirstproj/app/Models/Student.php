@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Admin extends Model
+class Student extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];
-
-    function getTest() {
-        return $this->test;
-    }
-
+    protected $fillable = [
+        'fname',
+        'lname',
+        'email',
+        'phone',
+    ];
 }

@@ -2,14 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Admin;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class TeacherController extends Controller
 {
-
     public function index() {
-        return view('index');
+        return view('teachers.index');
     }
-
 }
