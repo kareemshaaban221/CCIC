@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AddOrUpdateStudentRequest;
 use App\Models\Student;
+use Illuminate\Support\Facades\Storage;
 
 class StudentController extends Controller
 {
 
     public function index() {
-        $students = Student::all();
+        $students = Student::get();
         return view('students.index', compact('students'));
     }
 
@@ -18,7 +19,16 @@ class StudentController extends Controller
     }
 
     public function store(AddOrUpdateStudentRequest $request) {
-        Student::create($request->validated());
+        $pic = $request->file('picture');
+        $filename = Storage::disk('public')->put('/uploads', $pic);
+
+        // $new_filename = time() . '.' . $pic->getClientOriginalExtension();
+        // move_uploaded_file($pic->getRealPath(), public_path('uploads/' . $new_filename));
+
+        $validated = (array) $request->validated();
+        $validated['picture'] = $filename;
+
+        Student::create($validated);
         session()->flash('success','Student added successfully');
         return redirect(route('students.index'));
     }

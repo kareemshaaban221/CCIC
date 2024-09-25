@@ -31,7 +31,7 @@
                         <td>{{ $std->lname }}</td>
                         <td><a href="mailto:{{$std->email}}">{{$std->email}}</a></td>
                         <td><a href="tel:{{$std->phone}}">{{$std->phone}}</a></td>
-                        <td><img src="" width="50" height="50" alt="profile image"></td>
+                        <td><img src="{{ asset('storage/' . $std->picture) }}" width="50" height="50" alt="profile image"></td>
                         <td>
                             <a href="{{ route('students.edit', $std->id) }}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
                             <a href="{{ route('students.destroy', $std->id) }}" onclick="return confirm('Are you sure?') }}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
